@@ -582,96 +582,167 @@ header {
 }
 
 /* =========================
-   SERVICES
+   CAPABILITIES / EPC SERVICES
 ========================= */
-
 .services {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
 }
 
 .service {
     position: relative;
     overflow: hidden;
+    min-width: 0;
     background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    transition: transform .3s ease, box-shadow .3s ease;
+    border: 1px solid rgba(7, 21, 44, .05);
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(9, 24, 45, .035);
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    animation: capability-enter .7s both;
 }
 
+.service:nth-child(2) { animation-delay: .08s; }
+.service:nth-child(3) { animation-delay: .16s; }
+.service:nth-child(4) { animation-delay: .24s; }
+.service:nth-child(5) { animation-delay: .32s; }
+.service:nth-child(6) { animation-delay: .40s; }
+
 .service:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 45px rgba(9, 24, 45, .12);
+    transform: translateY(-7px);
+    border-color: rgba(245, 169, 0, .55);
+    box-shadow: 0 20px 42px rgba(9, 24, 45, .12);
+}
+
+.service-visual {
+    position: relative;
+    height: 205px;
+    overflow: hidden;
+    background: #eef4f8;
 }
 
 .service-image {
     width: 100%;
-    height: 190px;
+    height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform .4s ease;
+    transform: scale(1.015);
+    animation: visual-float 7s ease-in-out infinite alternate;
+    transition: transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease;
 }
 
-.service:hover .service-image {
-    transform: scale(1.05);
+.service:nth-child(even) .service-image { animation-delay: -2.5s; }
+.service:hover .service-image { transform: scale(1.09); filter: saturate(1.08); }
+
+.service-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(7,21,44,0) 55%, rgba(7,21,44,.10));
 }
 
 .service-content {
     position: relative;
-    min-height: 190px;
-    padding: 25px;
+    min-height: 175px;
+    padding: 24px 26px 28px;
 }
 
 .service-content h3 {
-    margin-bottom: 12px;
-    font-size: 22px;
+    margin: 0 0 14px;
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.3;
     color: var(--navy);
 }
 
 .service-content p {
     margin: 0;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.65;
+    color: #53647c;
+    font-size: 16px;
+    line-height: 1.75;
 }
 
-.service .arrow {
-    position: absolute;
-    right: 22px;
-    bottom: 20px;
-    font-size: 24px;
-    color: var(--gold);
+@keyframes visual-float {
+    from { transform: scale(1.015) translateY(0); }
+    to { transform: scale(1.045) translateY(-3px); }
+}
+
+@keyframes capability-enter {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 980px) {
+    .services { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .service-visual { height: 190px; }
+}
+
+@media (max-width: 700px) {
+    .services { grid-template-columns: 1fr; gap: 18px; }
+    .service-visual { height: clamp(190px, 58vw, 280px); }
+    .service-content { min-height: auto; padding: 22px; }
+    .service-content h3 { font-size: 20px; }
+    .service-content p { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service, .service-image { animation: none !important; transition: none !important; }
+    .service:hover, .service:hover .service-image { transform: none; }
 }
 
 /* =========================
-   WORKFLOW
+   ANIMATED EPC WORKFLOW
 ========================= */
-
 .workflow {
     background: var(--navy);
     border-radius: 16px;
-    padding: 50px;
+    padding: 50px 30px;
     color: #fff;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
     position: relative;
+    isolation: isolate;
+    overflow: hidden;
 }
 
+/* A subtle animated energy line connects the five stages — no arrows */
 .workflow::before {
     content: "";
     position: absolute;
+    z-index: -1;
     left: 10%;
     right: 10%;
     top: 76px;
     height: 2px;
-    background: rgba(255, 255, 255, .18);
+    background: linear-gradient(90deg,
+        rgba(255,255,255,.14) 0%,
+        rgba(245,169,0,.95) 45%,
+        rgba(255,255,255,.14) 100%);
+    background-size: 220% 100%;
+    animation: workflow-line-glow 4s ease-in-out infinite;
+}
+
+/* Moving light travels along the connector while the page loads */
+.workflow::after {
+    content: "";
+    position: absolute;
+    top: 71px;
+    left: 10%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff3c4;
+    box-shadow: 0 0 10px 3px rgba(245,169,0,.75);
+    pointer-events: none;
+    animation: workflow-light-travel 5s ease-in-out infinite;
 }
 
 .step {
     text-align: center;
     position: relative;
+    min-width: 0;
 }
 
 .step b {
@@ -684,7 +755,16 @@ header {
     background: var(--gold);
     color: var(--navy);
     position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 0 rgba(245,169,0,.42);
+    animation: workflow-node-pulse 3s ease-out infinite;
 }
+
+.step:nth-child(1) b { animation-delay: 0s; }
+.step:nth-child(2) b { animation-delay: .35s; }
+.step:nth-child(3) b { animation-delay: .7s; }
+.step:nth-child(4) b { animation-delay: 1.05s; }
+.step:nth-child(5) b { animation-delay: 1.4s; }
 
 .step h3 {
     margin: 18px 0 8px;
@@ -692,7 +772,46 @@ header {
 
 .step p {
     font-size: 13px;
+    line-height: 1.5;
     color: #bfcada;
+    overflow-wrap: anywhere;
+}
+
+@keyframes workflow-line-glow {
+    0%, 100% { background-position: 100% 0; opacity: .65; }
+    50% { background-position: 0 0; opacity: 1; }
+}
+
+@keyframes workflow-light-travel {
+    0% { left: 10%; opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { left: calc(90% - 12px); opacity: 0; }
+}
+
+@keyframes workflow-node-pulse {
+    0%, 70%, 100% { box-shadow: 0 0 0 0 rgba(245,169,0,0); }
+    35% { box-shadow: 0 0 0 9px rgba(245,169,0,.18); }
+}
+
+@keyframes workflow-line-glow-vertical {
+    0%, 100% { background-position: 0 100%; opacity: .7; }
+    50% { background-position: 0 0; opacity: 1; }
+}
+
+@keyframes workflow-light-travel-vertical {
+    0% { top: 48px; opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { top: calc(100% - 60px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workflow::before,
+    .workflow::after,
+    .step b {
+        animation: none;
+    }
 }
 
 /* =========================
@@ -972,18 +1091,21 @@ header {
 
 .awards {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
     margin-top: 0;
 }
 
 .award {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    position: relative;
+    background: linear-gradient(155deg, #ffffff 0%, #fbfcfe 100%);
+    border: 1px solid rgba(12, 29, 55, .09);
+    border-radius: 18px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    box-shadow: 0 8px 24px rgba(9, 24, 45, .045);
     transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 
@@ -995,19 +1117,21 @@ header {
 
 .award-image {
     width: 100%;
-    height: 260px;
-    padding: 8px;
-    background: #f7f8fa;
+    height: 230px;
+    padding: 14px;
+    background: radial-gradient(circle at 85% 15%, rgba(245,169,0,.14), transparent 34%), linear-gradient(135deg, #f6f8fb, #eef2f7);
     overflow: hidden;
+    position: relative;
 }
 
 .award-image img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
-    border-radius: 8px;
+    border-radius: 10px;
+    filter: drop-shadow(0 7px 10px rgba(9,24,45,.08));
     transition: transform .4s ease;
 }
 
@@ -1016,7 +1140,7 @@ header {
 }
 
 .award-content {
-    padding: 20px 18px 22px;
+    padding: 22px 22px 24px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -1025,7 +1149,7 @@ header {
 .award-content h3 {
     color: var(--navy);
     font-size: 17px;
-    line-height: 1.35;
+    line-height: 1.4;
     margin: 0 0 14px;
     font-weight: 800;
 }
@@ -1046,6 +1170,35 @@ header {
     line-height: 1.45;
     font-weight: 800;
     margin-top: auto;
+}
+
+
+/* Refined awards gallery and subtle decorative graphics */
+.awards-head h2 { letter-spacing: -.025em; }
+.awards-head .eyebrow { display: inline-flex; align-items: center; gap: 9px; }
+.awards-head .eyebrow::before { content: "✦"; color: var(--gold); font-size: 16px; }
+.award::after {
+    content: "✦";
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--navy);
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 3px 12px rgba(9,24,45,.10);
+    pointer-events: none;
+}
+.award-content span { display: inline-flex; align-items: center; gap: 8px; }
+.award-content span::before { content: ""; display: inline-block; width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--gold); }
+@media (prefers-reduced-motion: reduce) {
+    .award, .award-image img { transition: none !important; }
+    .award:hover, .award:hover .award-image img { transform: none; }
+    .workflow::before, .workflow::after, .step b { animation: none !important; }
 }
 
 /* =========================
@@ -1221,16 +1374,19 @@ header {
     }
 
     .awards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
     }
 
     .workflow {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        padding: 42px 20px;
+        gap: 12px;
+        overflow: hidden;
     }
 
-    .workflow::before {
-        display: none;
-    }
+    .workflow::before { top: 68px; }
+    .workflow::after { top: 63px; }
 
     .image-frame img,
     .team img {
@@ -1280,10 +1436,68 @@ header {
     .services,
     .principles,
     .clients,
-    .leadership,
-    .awards,
-    .workflow {
+    .leadership {
         grid-template-columns: 1fr;
+    }
+
+    .awards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 480px;
+        margin-inline: auto;
+    }
+
+    /* Vertical mobile workflow: stages 01 to 05 flow downward */
+    .workflow {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 28px 20px;
+        gap: 0;
+        overflow: hidden;
+        border-radius: 18px;
+    }
+
+    .workflow::before {
+        top: 54px;
+        bottom: 54px;
+        left: 45px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background: linear-gradient(180deg, rgba(255,255,255,.18), var(--gold), rgba(255,255,255,.18));
+        background-size: 100% 220%;
+        animation: workflow-line-glow-vertical 4s ease-in-out infinite;
+    }
+
+    .workflow::after {
+        top: 48px;
+        left: 39px;
+        width: 14px;
+        height: 14px;
+        animation: workflow-light-travel-vertical 5s ease-in-out infinite;
+    }
+
+    .step {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        column-gap: 18px;
+        align-items: start;
+        text-align: left;
+        padding: 0 0 30px;
+        min-height: 112px;
+    }
+
+    .step:last-child { padding-bottom: 0; min-height: 52px; }
+    .step b { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
+    .step h3 { grid-column: 2; margin: 4px 0 7px; font-size: 18px; }
+    .step p { grid-column: 2; margin: 0; font-size: 13px; line-height: 1.55; max-width: 42ch; }
+
+    .step h3 {
+        font-size: 18px;
+    }
+
+    .step p {
+        font-size: 12px;
+        line-height: 1.5;
     }
 
     .section-head {
@@ -1334,7 +1548,7 @@ header {
     }
 
     .award-image {
-        height: 320px;
+        height: 230px;
     }
 
     .award-content {
@@ -1377,7 +1591,9 @@ header {
         padding: 30px 20px;
     }
 }
-        </style>
+        
+
+</style>
     </head>
 <body>
     <header>
@@ -1575,38 +1791,52 @@ header {
         <div class="container">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">Our Expertise</div>
-                    <h2>Core EPC Services</h2>
+                    <div class="eyebrow">03 | CAPABILITIES</div>
+                    <h2>End-To-End execution framework.</h2>
                 </div>
-                <p class="lead">A practical end-to-end scope covering utility-scale, rooftop and project-management requirements.</p>
+                <p class="lead">Integrated solar EPC, grid infrastructure, storage, operations, and project-enablement capabilities.</p>
             </div>
             <div class="services">
                 <article class="service">
-                    <img src="assets/turnkey-epc.jpeg" alt="Utility scale solar EPC project" class="service-image">
+                    <div class="service-visual"><img src="assets/capabilities/solar-epc.webp" alt="Engineers planning a utility-scale solar EPC project" class="service-image" loading="lazy"></div>
                     <div class="service-content">
-                        <h3>Turnkey EPC</h3>
-                        <p>Utility-scale solar power project execution from planning through commissioning.</p>
+                        <h3>3MW–100MW Solar EPC Capability</h3>
+                        <p>Turnkey engineering, C&amp;I rooftop, and commissioning.</p>
                     </div>
                 </article>
                 <article class="service">
-                    <img src="assets/installation.jpeg" alt="Solar panel installation" class="service-image">
+                    <div class="service-visual"><img src="assets/capabilities/bos-evacuation.webp" alt="Solar power evacuation infrastructure and grid connections" class="service-image" loading="lazy"></div>
                     <div class="service-content">
-                        <h3>Installation</h3>
-                        <p>Seamless installation, commissioning and grid synchronization.</p>
+                        <h3>BoS &amp; Evacuation</h3>
+                        <p>Civil, electrical BoS, and grid interface lines.</p>
                     </div>
                 </article>
                 <article class="service">
-                    <img src="assets/pmc.jpeg" alt="Solar project management consultancy" class="service-image">
+                    <div class="service-visual"><img src="assets/capabilities/substations.webp" alt="High-voltage substation and switchyard infrastructure" class="service-image" loading="lazy"></div>
                     <div class="service-content">
-                        <h3>PMC</h3>
-                        <p>Project management consultancy for seamless delivery.</p>
+                        <h3>33kV–220kV Substations</h3>
+                        <p>Switchyards, HT systems, and STU coordination.</p>
                     </div>
                 </article>
                 <article class="service">
-                    <img src="assets/rooftop-solar.jpeg" alt="Commercial rooftop solar installation" class="service-image">
+                    <div class="service-visual"><img src="assets/capabilities/bess-integration.webp" alt="Battery energy storage containers integrated with solar power" class="service-image" loading="lazy"></div>
                     <div class="service-content">
-                        <h3>Rooftop Solar</h3>
-                        <p>Commercial and industrial infrastructure solutions.</p>
+                        <h3>BESS Integration</h3>
+                        <p>Storage integration, grid resilience power, and BESS manufacturing at small scale.</p>
+                    </div>
+                </article>
+                <article class="service">
+                    <div class="service-visual"><img src="assets/capabilities/om-asset-support.webp" alt="Technician monitoring solar asset performance on a digital dashboard" class="service-image" loading="lazy"></div>
+                    <div class="service-content">
+                        <h3>O&amp;M &amp; Asset Support</h3>
+                        <p>Monitoring, performance analysis, and optimization.</p>
+                    </div>
+                </article>
+                <article class="service">
+                    <div class="service-visual"><img src="assets/capabilities/tenders-land.webp" alt="Solar project land planning and approvals checklist" class="service-image" loading="lazy"></div>
+                    <div class="service-content">
+                        <h3>Central and State Tenders for EPC, Open Access Land</h3>
+                        <p>Dedicated OHE execution and approvals coordination.</p>
                     </div>
                 </article>
             </div>
@@ -1620,28 +1850,33 @@ header {
                     <div class="eyebrow">End-to-End Solutions</div>
                     <h2>The EPC Workflow</h2>
                 </div>
-                <p class="lead">Four connected stages take a project from feasibility to grid-ready execution.</p>
+                <p class="lead">Five connected stages take a project from capital planning to long-term operations and maintenance.</p>
             </div>
             <div class="workflow">
                 <div class="step">
                     <b>01</b>
-                    <h3>Planning</h3>
-                    <p>Feasibility and site studies.</p>
+                    <h3>Capital</h3>
+                    <p> Financial modelling and debt syndication.</p>
                 </div>
                 <div class="step">
                     <b>02</b>
-                    <h3>Engineering</h3>
-                    <p>Design optimization and drafting.</p>
+                    <h3>Land</h3>
+                    <p>Aggregation and open-access clearances.</p>
                 </div>
                 <div class="step">
                     <b>03</b>
-                    <h3>Procurement</h3>
-                    <p>High-quality equipment sourcing.</p>
+                    <h3>Engineering</h3>
+                    <p>Design optimisation and technical planning.</p>
                 </div>
                 <div class="step">
                     <b>04</b>
-                    <h3>Construction</h3>
-                    <p>Turnkey execution and grid compliance.</p>
+                    <h3>EPC</h3>
+                    <p>Procurement, civil works, and synchronisation</p>
+                </div>
+                 <div class="step">
+                    <b>05</b>
+                    <h3>O&M</h3>
+                    <p>Preventive maintenance and asset reporting.</p>
                 </div>
             </div>
         </div>
@@ -1754,43 +1989,43 @@ header {
             </div>
             <div class="clients">
                 <div class="client">
-                    <img src="assets/lanco.png" alt="LANCO">
+                    <img src="assets/LANCO.png" alt="LANCO">
                     <div class="client-name">LANCO</div>
                 </div>
                 <div class="client">
-                    <img src="assets/ntpc-renewables.png" alt="NTPC Renewables">
+                    <img src="assets/NTPC.png" alt="NTPC Renewables">
                     <div class="client-name">NTPC Renewables</div>
                 </div>
                 <div class="client">
-                    <img src="assets/sccl.png" alt="SCCL">
+                    <img src="assets/SCCL.png" alt="SCCL">
                     <div class="client-name">SCCL</div>
                 </div>
                 <div class="client">
-                    <img src="assets/nlc-india.png" alt="NLC India">
+                    <img src="assets/NLC.png" alt="NLC India">
                     <div class="client-name">NLC INDIA</div>
                 </div>
                 <div class="client">
-                    <img src="assets/ntpc-limited.png" alt="NTPC Limited">
+                    <img src="assets/NTPC Limited.png" alt="NTPC Limited">
                     <div class="client-name">NTPC Limited</div>
                 </div>
                 <div class="client">
-                    <img src="assets/ncc-limited.png" alt="NCC Limited">
+                    <img src="assets/NCC.png" alt="NCC Limited">
                     <div class="client-name">NCC Limited</div>
                 </div>
                 <div class="client">
-                    <img src="assets/bhel.png" alt="BHEL">
+                    <img src="assets/BHEL.png" alt="BHEL">
                     <div class="client-name">BHEL</div>
                 </div>
                 <div class="client">
-                    <img src="assets/airports-authority.png" alt="Airports Authority of India">
+                    <img src="assets/AAI.png" alt="Airports Authority of India">
                     <div class="client-name">Airports Authority of India</div>
                 </div>
                 <div class="client">
-                    <img src="assets/south-central-railway.png" alt="South Central Railway">
+                    <img src="assets/IRCTC.png" alt="South Central Railway">
                     <div class="client-name">South Central Railway</div>
                 </div>
                 <div class="client">
-                    <img src="assets/juwi.png" alt="juwi">
+                    <img src="assets/Juwi.png" alt="juwi">
                     <div class="client-name">juwi</div>
                 </div>
             </div>
@@ -1900,8 +2135,7 @@ header {
 
 <footer class="footer">
     <div class="container footer-inner">
-        <span>© Omni Projects Pvt. Ltd. · Renewable Energy & Solar EPC</span>
-        <span>Website concept rebuilt using the supplied corporate profile and its project imagery.</span>
+        <span>Omni Projects Pvt. Ltd........ Renewable Energy & Solar EPC</span>
     </div>
 </footer>
 
