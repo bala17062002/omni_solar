@@ -1176,23 +1176,9 @@ header {
 /* Refined awards gallery and subtle decorative graphics */
 .awards-head h2 { letter-spacing: -.025em; }
 .awards-head .eyebrow { display: inline-flex; align-items: center; gap: 9px; }
-.awards-head .eyebrow::before { content: "✦"; color: var(--gold); font-size: 16px; }
-.award::after {
-    content: "✦";
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    z-index: 2;
-    width: 30px;
-    height: 30px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    color: var(--navy);
-    background: rgba(255,255,255,.92);
-    box-shadow: 0 3px 12px rgba(9,24,45,.10);
-    pointer-events: none;
-}
+
+/* Awards use a clean, professional presentation without decorative star marks. */
+.award::after { content: none; }
 .award-content span { display: inline-flex; align-items: center; gap: 8px; }
 .award-content span::before { content: ""; display: inline-block; width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--gold); }
 @media (prefers-reduced-motion: reduce) {
@@ -1591,7 +1577,424 @@ header {
         padding: 30px 20px;
     }
 }
-        
+
+
+.genesis-copy h3 {
+    margin: 24px 0 12px;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.genesis-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.genesis-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
+
+.genesis-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #c8a45d;
+    font-weight: 700;
+}
+
+.genesis-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+
+
+
+/* =========================================================
+   REFINED MOBILE-FIRST FINISH
+   Visual polish only: navy, warm gold, clean white surfaces
+========================================================= */
+:root {
+    --gold: #e9aa20;
+    --navy: #081a33;
+    --navy2: #102b4d;
+    --soft: #f4f7fb;
+    --line: #e1e7ef;
+}
+
+:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.genesis-copy h2 {
+    font-size: clamp(34px, 4.2vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -.035em;
+}
+
+.genesis-copy h3 {
+    color: #fff;
+    font-size: clamp(18px, 1.5vw, 21px);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.genesis-copy .lead {
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.genesis-list li {
+    color: #d8e1ed;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.genesis-art {
+    min-height: 360px;
+    background-position: center;
+}
+
+.pill {
+    border-color: rgba(245, 169, 0, .35);
+    background: rgba(255, 255, 255, .045);
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.pill:hover {
+    background: rgba(245, 169, 0, .12);
+    border-color: var(--gold);
+}
+
+/* Awards gallery */
+.awards-section {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(245,169,0,.07), transparent 26%),
+        var(--soft);
+}
+
+.awards-head {
+    gap: 24px;
+}
+
+.awards-head .lead {
+    line-height: 1.7;
+}
+
+.awards {
+    align-items: stretch;
+    gap: 22px;
+}
+
+.award {
+    border-radius: 16px;
+    border-color: #e0e6ee;
+    box-shadow: 0 10px 28px rgba(7, 21, 44, .055);
+}
+
+.award:hover {
+    transform: translateY(-5px);
+    border-color: rgba(233,170,32,.75);
+    box-shadow: 0 18px 38px rgba(7, 21, 44, .11);
+}
+
+.award-image {
+    height: 235px;
+    padding: 16px;
+    background: linear-gradient(145deg, #f8fafc, #edf2f7);
+    border-bottom: 1px solid #e8edf3;
+}
+
+.award-image img {
+    border-radius: 8px;
+    filter: none;
+}
+
+.award-content {
+    padding: 23px 24px 25px;
+}
+
+.award-content h3 {
+    font-size: 17px;
+    line-height: 1.45;
+}
+
+.award-content h3::after {
+    width: 42px;
+    height: 3px;
+    margin-top: 13px;
+}
+
+.award-content span {
+    color: #8b6717;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+/* Smoother touch and smaller-screen layouts */
+@media (max-width: 980px) {
+    .section-head {
+        gap: 24px;
+    }
+
+    .genesis-copy {
+        padding: clamp(30px, 5vw, 52px);
+    }
+
+    .genesis-art {
+        min-height: 320px;
+    }
+
+    .awards {
+        gap: 18px;
+    }
+
+    .award-image {
+        height: 215px;
+    }
+}
+
+@media (max-width: 700px) {
+    .section {
+        padding: 56px 0;
+    }
+
+    h2 {
+        font-size: clamp(32px, 9vw, 43px);
+        line-height: 1.08;
+        letter-spacing: -.035em;
+    }
+
+    .lead {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .section-head {
+        margin-bottom: 28px;
+    }
+
+    .genesis {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: 14px;
+    }
+
+    .genesis-copy {
+        padding: 30px 24px;
+    }
+
+    .genesis-copy h2 {
+        font-size: clamp(32px, 8.5vw, 42px);
+    }
+
+    .genesis-copy .lead {
+        font-size: 15px;
+    }
+
+    .genesis-copy h3 {
+        margin-top: 23px;
+        font-size: 18px;
+    }
+
+    .genesis-list li {
+        font-size: 14px;
+        padding-left: 21px;
+        overflow-wrap: anywhere;
+    }
+
+    .genesis-art {
+        min-height: 245px;
+        background-position: center;
+    }
+
+    .genesis-pills {
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .pill {
+        padding: 7px 10px;
+        font-size: 11px;
+        margin: 0;
+    }
+
+    .awards-head {
+        margin-bottom: 28px;
+    }
+
+    .awards-head h2 {
+        font-size: clamp(32px, 8.5vw, 42px);
+    }
+
+    .awards-head .lead {
+        margin-top: 14px;
+        font-size: 15px;
+    }
+
+    .awards {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 460px;
+        gap: 16px;
+    }
+
+    .award {
+        border-radius: 14px;
+    }
+
+    .award-image {
+        height: clamp(190px, 58vw, 250px);
+        padding: 12px;
+    }
+
+    .award-content {
+        padding: 19px 20px 22px;
+    }
+
+    .award-content h3 {
+        font-size: 17px;
+        margin-bottom: 12px;
+    }
+
+    .award-content span {
+        font-size: 13px;
+    }
+
+    .stats {
+        gap: 12px;
+    }
+
+    .stat {
+        padding: 23px 20px;
+    }
+
+    .stat b {
+        font-size: 38px;
+    }
+
+    .contact {
+        border-radius: 14px;
+        gap: 32px;
+    }
+
+    .btn,
+    .cta {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navlinks a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .genesis-copy {
+        padding: 26px 19px;
+    }
+
+    .genesis-art {
+        min-height: 210px;
+    }
+
+    .award-image {
+        height: 200px;
+    }
+
+    .award-content {
+        padding: 18px;
+    }
+
+    .awards {
+        gap: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+.hero-title {
+    max-width: 760px;
+    margin: 20px 0 24px;
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1.12;
+    font-weight: 750;
+    letter-spacing: -1.8px;
+    text-wrap: balance;
+    overflow-wrap: normal;
+}
+
+.hero-title span {
+    color: #f5b21b;
+}
+
+/* Desktop: keep the heading compact beside the metrics */
+@media (min-width: 1024px) {
+    .hero-copy {
+        min-width: 0;
+    }
+
+    .hero-title {
+        max-width: 720px;
+        font-size: clamp(42px, 3.6vw, 56px);
+        line-height: 1.12;
+        letter-spacing: -1.6px;
+    }
+}
+
+/* Tablet and mobile */
+@media (max-width: 768px) {
+}
+
+/* =========================
+   LET'S TALK LEAD FORM MODAL
+========================= */
+.lead-modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+.lead-modal.is-open{display:flex}
+.lead-modal-backdrop{position:absolute;inset:0;background:rgba(3,12,27,.76);backdrop-filter:blur(7px)}
+.lead-modal-dialog{position:relative;z-index:1;width:min(100%,560px);max-height:min(90vh,820px);overflow-y:auto;background:#fff;color:var(--ink);border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.32);padding:30px;animation:lead-modal-in .22s ease-out}
+@keyframes lead-modal-in{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.lead-modal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:22px}
+.lead-modal-top h2{font-size:clamp(28px,5vw,36px);line-height:1.05;margin:7px 0 10px;color:var(--navy)}
+.lead-modal-top p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+.lead-modal-close{flex:0 0 42px;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:#f7f9fc;color:var(--navy);font-size:25px;line-height:1;cursor:pointer}
+.lead-form{display:grid;gap:16px}
+.lead-field{display:grid;gap:7px;min-width:0}
+.lead-field label,.lead-rating-label{color:var(--navy);font-size:13px;font-weight:750}
+.lead-field input,.lead-field select{width:100%;min-height:48px;padding:12px 13px;border:1px solid #d8e0ea;border-radius:9px;background:#fff;color:var(--ink);font:inherit;font-size:15px;outline:none;transition:border-color .2s ease,box-shadow .2s ease}
+.lead-field input:focus,.lead-field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(233,170,32,.16)}
+.lead-rating-wrap{padding:14px;background:#f6f8fb;border:1px solid #e7ecf2;border-radius:10px}
+.lead-rating-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.lead-rating-head output{color:#9b6b08;font-weight:850}
+.lead-rating{width:100%;accent-color:var(--gold);cursor:pointer}
+.lead-rating-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:4px}
+.lead-submit{width:100%;min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:9px;background:var(--gold);color:var(--navy);font-weight:850;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.lead-submit:hover{background:#ffc43d;transform:translateY(-1px)}
+.lead-submit:disabled{opacity:.65;cursor:wait;transform:none}
+.lead-form-note{min-height:20px;margin:0;font-size:13px;line-height:1.5}
+.lead-form-note.success{color:#087443}.lead-form-note.error{color:#b42318}
+.lead-privacy-note{margin:-5px 0 0;color:#78869a;font-size:11px;line-height:1.5}
+@media(max-width:520px){.lead-modal{padding:10px;align-items:flex-end}.lead-modal-dialog{width:100%;max-height:92dvh;padding:23px 19px calc(20px + env(safe-area-inset-bottom));border-radius:18px 18px 12px 12px}.lead-modal-top{margin-bottom:18px}.lead-form{gap:13px}}
+@media(prefers-reduced-motion:reduce){.lead-modal-dialog{animation:none}}
 
 </style>
     </head>
@@ -1611,7 +2014,7 @@ header {
                 <a href="#services">Services</a>
                 <a href="#projects">Projects</a>
                 <a href="#milestones">Milestones</a>
-                <a href="#contact" class="cta">Let's Talk</a>
+                <a href="#" class="cta" data-open-lead-modal>Let's Talk</a>
             </nav>
             <button class="menu" aria-label="Open menu">☰</button>
         </div>
@@ -1619,37 +2022,50 @@ header {
 
 <main id="home">
     <section class="hero">
-        <div class="container hero-inner">
-            <div class="hero-copy">
-                <div class="eyebrow">Clean Energy · Brighter Tomorrow</div>
-                <h1>Powering a <span>Greener</span> Future.</h1>
-                <p class="lead">Transforming renewable energy solutions through dependable solar EPC, project management and open-access integration — built for a more sustainable India.</p>
-                <div class="actions">
-                    <a class="btn primary" href="#projects">Explore Projects →</a>
-                    <a class="btn" href="#about">Discover Omni</a>
-                </div>
-            </div>
-            <div class="hero-panel">
-                <div class="metric">
-                    <strong>350 MW+</strong>
-                    <span>solar capacity delivered and ongoing, as stated in the corporate profile</span>
-                </div>
-                <div class="metric">
-                    <strong>12 States</strong>
-                    <span>nationwide execution platform</span>
-                </div>
-                <div class="metric">
-                    <strong>200+ Professionals</strong>
-                    <span>technical capability across India</span>
-                </div>
-                <div class="metric">
-                    <strong>End-to-End EPC</strong>
-                    <span>planning through construction and commissioning</span>
-                </div>
+    <div class="container hero-inner">
+        <div class="hero-copy">
+            <div class="eyebrow">Clean Energy · Brighter Tomorrow</div>
+
+    <h1 class="hero-title">
+    Driving Global <span>Sustainability</span>
+    Through Visionary Leadership and Innovation for Our Earth.
+</h1>
+
+            
+
+            <p class="lead">
+                Transforming renewable energy solutions through dependable solar EPC, project management and open-access integration — built for a more sustainable India.
+            </p>
+
+            <div class="actions">
+                <a class="btn primary" href="#projects">Explore Projects →</a>
+                <a class="btn" href="#about">Discover Omni</a>
             </div>
         </div>
-    </section>
 
+        <div class="hero-panel">
+            <div class="metric">
+                <strong>350 MW+</strong>
+                <span>solar capacity delivered and ongoing, as stated in the corporate profile</span>
+            </div>
+
+            <div class="metric">
+                <strong>12 States</strong>
+                <span>nationwide execution platform</span>
+            </div>
+
+            <div class="metric">
+                <strong>200+ Professionals</strong>
+                <span>technical capability across India</span>
+            </div>
+
+            <div class="metric">
+                <strong>End-to-End EPC</strong>
+                <span>planning through construction and commissioning</span>
+            </div>
+        </div>
+    </div>
+</section>
     <section class="section" id="about">
         <div class="container image-section">
             <div class="image-frame">
@@ -1699,22 +2115,22 @@ header {
             </div>
             <div class="stats">
                 <div class="stat">
-                    <b>12</b>
+                    <b class="count-up" data-count="12">0</b>
                     <span>States Active</span>
                     <small>Nationwide execution teams.</small>
                 </div>
                 <div class="stat">
-                    <b>350<em>MW+</em></b>
+                    <b class="count-up" data-count="350" data-suffix="MW+">0<em>MW+</em></b>
                     <span>Capacity Delivered</span>
                     <small>Commissioned and ongoing.</small>
                 </div>
                 <div class="stat">
-                    <b>200<em>+</em></b>
+                    <b class="count-up" data-count="200" data-suffix="+">0<em>+</em></b>
                     <span>Team Members</span>
                     <small>Skilled technical professionals.</small>
                 </div>
                 <div class="stat">
-                    <b>4</b>
+                    <b class="count-up" data-count="4">0</b>
                     <span>Design Branches</span>
                     <small>Tailored engineering solutions.</small>
                 </div>
@@ -1722,26 +2138,56 @@ header {
         </div>
     </section>
 
-    <section class="section" id="ourhistory">
-        <div class="container">
-            <div class="genesis">
-                <div class="genesis-copy">
-                    <div class="eyebrow">Our Genesis</div>
-                    <h2>A JV at the intersection of finance and engineering.</h2>
-                    <div class="gold-line"></div>
-                    <p class="lead">Omni Projects Pvt. Ltd. was established as an exclusive Joint Venture between <strong>OMNI Fincon</strong> and <strong>JAYRAM INDUSTRIES INDIA PVT LTD.</strong></p>
-                    <p class="lead">The profile describes a combination of financial leadership and technical excellence, with a solar portfolio exceeding 350 MW+.</p>
-                    <div>
-                        <span class="pill">Finance</span>
-                        <span class="pill">Engineering</span>
-                        <span class="pill">Solar EPC</span>
-                        <span class="pill">Project Delivery</span>
-                    </div>
+    
+<section class="section" id="ourhistory">
+    <div class="container">
+        <div class="genesis">
+
+            <div class="genesis-copy">
+                <div class="eyebrow">Our Genesis</div>
+
+                <h2>
+                    Engineering a Cleaner, Greener Tomorrow.
+                </h2>
+
+                <div class="gold-line"></div>
+
+                <p class="lead">
+                    Omni Projects Pvt. Ltd. is a joint venture with
+                    <strong>Jayram Industries India Pvt. Ltd.</strong>,
+                    combining financial expertise and engineering
+                    capabilities to deliver infrastructure and
+                    renewable energy solutions.
+                </p>
+
+                <h3>Renewable Energy EPC</h3>
+
+                <ul class="genesis-list">
+                    <li>350 MW+ Solar Execution Portfolio</li>
+                    <li>O&M, BESS, High-Voltage Infrastructure &amp; Railway OHE</li>
+                </ul>
+
+                <h3>Capital &amp; Leadership</h3>
+
+                <ul class="genesis-list">
+                    <li>15+ Years of Financial Advisory Experience</li>
+                    <li>₹20,000 Cr+ Disbursements Across Industries</li>
+                </ul>
+
+                <div class="genesis-pills">
+                    <span class="pill">Renewable Energy</span>
+                    <span class="pill">Solar EPC</span>
+                    <span class="pill">Infrastructure</span>
+                    <span class="pill">Financial Advisory</span>
                 </div>
-                <div class="genesis-art"></div>
             </div>
+
+            <div class="genesis-art"></div>
+
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section class="section" style="background:var(--soft)">
         <div class="container">
@@ -1913,7 +2359,7 @@ header {
             <div class="section-head">
                 <div>
                     <div class="eyebrow">Track Record</div>
-                    <h2>Projects that make the profile tangible.</h2>
+                    <h2>Projects that make us tangible.</h2>
                 </div>
                
             </div>
@@ -1989,7 +2435,7 @@ header {
             </div>
             <div class="clients">
                 <div class="client">
-                    <img src="assets/LANCO.png" alt="LANCO">
+                    <img src="assets/LANCO.png"  alt="LANCO">
                     <div class="client-name">LANCO</div>
                 </div>
                 <div class="client">
@@ -2108,24 +2554,20 @@ header {
                     <h2>Powering a Greener Future. Together.</h2>
                     <div class="gold-line"></div>
                     <p class="lead">Get in touch with us today for innovative and sustainable renewable EPC solutions.</p>
-                    <a class="btn primary" href="mailto:info@sakhamurigroup.com">Start a conversation →</a>
+                    <a class="btn primary" href="#" data-open-lead-modal>Start a conversation →</a>
                 </div>
                 <div class="contact-items">
                     <div class="contact-item">
                         <small>Contact Us</small>
-                        <strong>+91-7032171888</strong>
-                        <strong>+91-7702178888 (TN)</strong>
-                        <strong>+91-9618264888 (UP)</strong>
+                        <strong>+91-9500063064</strong>
                     </div>
                     <div class="contact-item">
                         <small>Email & Web</small>
-                        <strong>info@sakhamurigroup.com</strong>
-                        <strong>sales@sakhamurigroup.com</strong>
-                        <strong>www.omniprojectspvt.com</strong>
+                        <strong>Contact@omnifincon.co.in</strong>
                     </div>
                     <div class="contact-item">
                         <small>Headquarters</small>
-                        <strong>Flat No 203, Kadiris Apurupa Urban, 2nd Floor, Kondapur, Hyderabad, 500084.</strong>
+                        <strong>Building Number 9, Mindspace, HITEC City, Hyderabad, Telangana 500081.</strong>
                     </div>
                 </div>
             </div>
@@ -2153,6 +2595,242 @@ header {
             links.classList.remove('mobile');
         });
     });
+
+    // Count the company statistics up from zero on every page load or revisit.
+    (() => {
+        const counters = document.querySelectorAll('.count-up[data-count]');
+        const duration = 1600;
+
+        counters.forEach(counter => {
+            const target = Number(counter.dataset.count);
+            const suffix = counter.dataset.suffix || '';
+            const startTime = performance.now();
+
+            const updateCounter = (now) => {
+                const progress = Math.min((now - startTime) / duration, 1);
+                // Ease out smoothly so the count slows as it approaches its target.
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(target * easedProgress);
+
+                if (suffix) {
+                    counter.innerHTML = `${current}<em>${suffix}</em>`;
+                } else {
+                    counter.textContent = current;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else if (suffix) {
+                    counter.innerHTML = `${target}<em>${suffix}</em>`;
+                } else {
+                    counter.textContent = target;
+                }
+            };
+
+            counter.textContent = '0';
+            requestAnimationFrame(updateCounter);
+        });
+    })();
+
+    // Let's Talk modal and lead submission.
+    // Replace with your deployed Google Apps Script Web App URL ending in /exec.
+    const LEAD_FORM_ENDPOINT = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+    (() => {
+        const modal = document.getElementById('leadModal');
+        const form = document.getElementById('leadForm');
+        const note = document.getElementById('leadFormNote');
+        const submit = document.getElementById('leadSubmit');
+        const urgency = document.getElementById('leadUrgency');
+        const urgencyValue = document.getElementById('leadUrgencyValue');
+        let previousFocus = null;
+        const openModal = event => {
+            if (event) event.preventDefault();
+            previousFocus = document.activeElement;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            const navLinks = document.querySelector('.navlinks');
+            if (navLinks) navLinks.classList.remove('mobile');
+            setTimeout(() => document.getElementById('leadName').focus(), 50);
+        };
+        const closeModal = () => {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (previousFocus && previousFocus.focus) previousFocus.focus();
+        };
+        document.querySelectorAll('[data-open-lead-modal]').forEach(el => el.addEventListener('click', openModal));
+        modal.querySelectorAll('[data-close-lead-modal]').forEach(el => el.addEventListener('click', closeModal));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        });
+        urgency.addEventListener('input', () => { urgencyValue.value = `${urgency.value}/5`; });
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            note.textContent = '';
+            note.className = 'lead-form-note';
+            if (!form.reportValidity()) return;
+            if (!LEAD_FORM_ENDPOINT || LEAD_FORM_ENDPOINT.includes('PASTE_YOUR_')) {
+                note.textContent = 'The form is ready, but Google Sheets is not connected yet. Add your Apps Script Web App URL to LEAD_FORM_ENDPOINT.';
+                note.classList.add('error');
+                return;
+            }
+            const digits = form.elements.phone.value.replace(/[^\d]/g, '');
+            if (digits.length < 8 || digits.length > 15) {
+                note.textContent = 'Please enter a valid phone number.';
+                note.classList.add('error');
+                form.elements.phone.focus();
+                return;
+            }
+            const data = new URLSearchParams();
+            data.set('name', form.elements.name.value.trim());
+            data.set('phone', form.elements.phone.value.trim());
+            data.set('projectType', form.elements.projectType.value);
+            data.set('estimatedValue', form.elements.estimatedValue.value);
+            data.set('urgencyRating', urgency.value);
+            data.set('source', window.location.href);
+            submit.disabled = true;
+            submit.textContent = 'Submitting…';
+            try {
+                await fetch(LEAD_FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: data });
+                note.textContent = 'Thank you! Your enquiry has been submitted. Our team will contact you soon.';
+                note.classList.add('success');
+                form.reset();
+                urgencyValue.value = '5/5';
+                setTimeout(() => {
+                    closeModal();
+                    note.textContent = '';
+                    note.className = 'lead-form-note';
+                }, 2600);
+            } catch (error) {
+                note.textContent = 'We could not submit your enquiry. Please try again or contact us by phone.';
+                note.classList.add('error');
+            } finally {
+                submit.disabled = false;
+                submit.innerHTML = 'Submit enquiry <span aria-hidden="true">→</span>';
+            }
+        });
+    })();
+
 </script>
+
+<style>
+/* Mobile UX refinement for Our Genesis only; desktop layout remains unchanged. */
+@media (max-width: 700px) {
+  #ourhistory { padding: 34px 0 42px; }
+  #ourhistory .container { width: min(100% - 28px, 560px); }
+  #ourhistory .genesis {
+    display: flex; flex-direction: column; min-height: 0;
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 12px 30px rgba(8, 26, 51, .12);
+  }
+  #ourhistory .genesis-copy { padding: 25px 21px 24px; }
+  #ourhistory .eyebrow {
+    margin-bottom: 10px; color: #f0b323; font-size: 10px;
+    font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  }
+  #ourhistory .genesis-copy h2 {
+    max-width: 16ch; margin: 0; font-size: clamp(27px, 7.3vw, 34px);
+    line-height: 1.08; letter-spacing: -.04em; text-wrap: balance;
+  }
+  #ourhistory .gold-line { width: 34px; height: 3px; margin: 15px 0 16px; }
+  #ourhistory .genesis-copy .lead {
+    margin: 0; color: #d8e2ef; font-size: 13px; line-height: 1.65;
+  }
+  #ourhistory .genesis-copy h3 {
+    margin: 19px 0 8px; font-size: 14px; line-height: 1.35;
+    letter-spacing: -.01em;
+  }
+  #ourhistory .genesis-list { margin: 0; }
+  #ourhistory .genesis-list li {
+    margin: 0 0 7px; padding-left: 17px; color: #edf2f8;
+    font-size: 12px; line-height: 1.5; overflow-wrap: normal;
+  }
+  #ourhistory .genesis-list li:last-child { margin-bottom: 0; }
+  #ourhistory .genesis-list li::before { font-size: 12px; top: 0; }
+  /* The category chips repeat the headings on small screens, so keep the layout focused. */
+  #ourhistory .genesis-pills { display: none; }
+  #ourhistory .genesis-art {
+    width: 100%; min-height: 0; height: auto; aspect-ratio: 16 / 9;
+    background-position: center 54%; background-size: cover;
+  }
+}
+@media (max-width: 360px) {
+  #ourhistory .container { width: calc(100% - 20px); }
+  #ourhistory .genesis-copy { padding: 22px 17px; }
+  #ourhistory .genesis-copy h2 { font-size: 27px; }
+  #ourhistory .genesis-copy .lead { font-size: 12.5px; }
+  #ourhistory .genesis-list li { font-size: 11.5px; }
+}
+
+/* HERO HEADLINE — compact, deliberate line wrapping */
+.hero h1.hero-title {
+    max-width: 700px;
+    margin: 18px 0 24px;
+    font-size: clamp(42px, 4.2vw, 60px);
+    line-height: 1.08;
+    font-weight: 750;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+    overflow-wrap: normal;
+    hyphens: none;
+}
+.hero h1.hero-title span {
+    color: var(--gold);
+}
+@media (max-width: 980px) {
+    .hero h1.hero-title {
+        max-width: 680px;
+        font-size: clamp(38px, 5.6vw, 52px);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+    }
+}
+@media (max-width: 700px) {
+    .hero {
+        min-height: auto;
+        padding-top: 104px;
+        padding-bottom: 42px;
+    }
+    .hero h1.hero-title {
+        max-width: 100%;
+        margin: 16px 0 20px;
+        font-size: clamp(34px, 8.4vw, 43px);
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+        text-wrap: pretty;
+    }
+}
+@media (max-width: 360px) {
+    .hero h1.hero-title {
+        font-size: 32px;
+        letter-spacing: -0.03em;
+    }
+}
+
+</style>
+
+
+<!-- Let's Talk lead form -->
+<div class="lead-modal" id="leadModal" aria-hidden="true">
+  <div class="lead-modal-backdrop" data-close-lead-modal></div>
+  <section class="lead-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+    <div class="lead-modal-top">
+      <div><div class="eyebrow">Start a conversation</div><h2 id="leadModalTitle">Let's Talk</h2><p>Tell us a little about your project. Our team will get in touch.</p></div>
+      <button class="lead-modal-close" type="button" aria-label="Close form" data-close-lead-modal>&times;</button>
+    </div>
+    <form class="lead-form" id="leadForm">
+      <div class="lead-field"><label for="leadName">Full name *</label><input id="leadName" name="name" type="text" autocomplete="name" placeholder="Enter your full name" required maxlength="100"></div>
+      <div class="lead-field"><label for="leadPhone">Phone number *</label><input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 XXXXX XXXXX" required pattern="[0-9+() .-]{8,20}" maxlength="20"></div>
+      <div class="lead-field"><label for="leadProject">Project interest *</label><select id="leadProject" name="projectType" required><option value="" disabled selected>Select project interest</option><option>Solar EPC</option><option>Open Access</option><option>BESS / Energy Storage</option><option>High-Voltage Infrastructure</option><option>Railway OHE</option><option>Other Infrastructure</option></select></div>
+      <div class="lead-field"><label for="leadEstimate">Estimated project value *</label><select id="leadEstimate" name="estimatedValue" required><option value="" disabled selected>Select estimated value</option><option>Below ₹50 lakh</option><option>₹50 lakh – ₹5 crore</option><option>₹5 crore – ₹25 crore</option><option>Above ₹25 crore</option><option>Not decided yet</option></select></div>
+      <div class="lead-rating-wrap"><div class="lead-rating-head"><label class="lead-rating-label" for="leadUrgency">Project urgency</label><output id="leadUrgencyValue" for="leadUrgency">5/5</output></div><input class="lead-rating" id="leadUrgency" name="urgencyRating" type="range" min="1" max="5" value="5" step="1"><div class="lead-rating-ends"><span>1 · Exploring</span><span>5 · Urgent</span></div></div>
+      <button class="lead-submit" type="submit" id="leadSubmit">Submit enquiry <span aria-hidden="true">→</span></button>
+      <p class="lead-form-note" id="leadFormNote" role="status" aria-live="polite"></p>
+      <p class="lead-privacy-note">By submitting, you agree that Omni Projects may contact you about your enquiry.</p>
+    </form>
+  </section>
+</div>
+
 </body>
 </html>
